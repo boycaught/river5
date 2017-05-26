@@ -3,8 +3,8 @@
 		<title>River5</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="http://fargo.io/code/jquery-1.9.1.min.js"></script><link href="http://fargo.io/code/bootstrap.css" rel="stylesheet"><script src="http://fargo.io/code/bootstrap.min.js"></script><link rel="stylesheet" href="http://fargo.io/code/fontAwesome/css/font-awesome.min.css"/><link href="http://fargo.io/code/ubuntuFont.css" rel="stylesheet" type="text/css"><link href="http://fargo.io/code/ranchoFont.css" rel="stylesheet" type="text/css"><script src="http://fargo.io/code/node/shared/utils.js"></script><script src="http://fargo.io/code/node/shared/alertdialog.js"></script><script src="http://fargo.io/code/node/shared/confirmdialog.js"></script><script src="http://fargo.io/code/node/shared/askdialog.js"></script><script src="http://fargo.io/code/strftime.js"></script><script src="http://fargo.io/code/shared/ga.js"></script><script src="http://fargo.io/code/shared/app.js"></script><script src="http://fargo.io/code/shared/menus.js"></script><link href="http://fargo.io/code/shared/menus.css" rel="stylesheet" type="text/css"><link href="http://fargo.io/code/shared/app.css" rel="stylesheet" type="text/css"><script src="http://fargo.io/code/shared/appprefs.js"></script><script src="http://fargo.io/code/shared/beep.js"></script>
-		<script src="http://fargo.io/code/browsers/riverbrowser.js"></script>
+		<script src="http://fargo.io/code/jquery-1.9.1.min.js"></script><link href="http://fargo.io/code/bootstrap.css" rel="stylesheet"><script src="http://fargo.io/code/bootstrap.min.js"></script><link rel="stylesheet" href="http://fargo.io/code/fontAwesome/css/font-awesome.min.css"/><link href="http://fargo.io/code/ubuntuFont.css" rel="stylesheet" type="text/css"><link href="http://fargo.io/code/ranchoFont.css" rel="stylesheet" type="text/css"><script src="http://fargo.io/code/node/shared/utils.js"></script><script src="http://fargo.io/code/node/shared/alertdialog.js"></script><script src="http://fargo.io/code/node/shared/confirmdialog.js"></script><script src="http://fargo.io/code/node/shared/askdialog.js"></script><script src="http://fargo.io/code/strftime.js"></script><script src="http://fargo.io/code/shared/ga.js"></script><script src="http://fargo.io/code/shared/app.js"></script><script src="http://fargo.io/code/shared/menus.js"></script><link href="http://fargo.io/code/shared/menus.css" rel="stylesheet" type="text/css"><link href="http://fargo.io/code/shared/app.css" rel="stylesheet" type="text/css"><script src="http://fargo.io/code/shared/appprefs.js?x=2"></script><script src="http://fargo.io/code/shared/jBeep.min.js"></script><script src="http://fargo.io/code/shared/beep.js"></script>
+		<script src="http://api.nodestorage.io/api.js"></script><script src="http://fargo.io/code/shared/emojify.js"></script><link rel="stylesheet" href="http://fargo.io/code/shared/emojify.css"/><script src="http://fargo.io/code/markdownConverter.js"></script><script src="http://fargo.io/code/browsers/outlinebrowser.js" async></script><link href="http://fargo.io/code/browsers/riverbrowser.css" rel="stylesheet" type="text/css"><script src="http://fargo.io/code/browsers/riverbrowser.js"></script>
 		<script>
 			var appConsts = {
 				productname: "river5Home",
@@ -17,13 +17,6 @@
 				flServerBasedPrefs: true,
 				ctPrefsSaves: 0,
 				myRivers: {
-					"Dave": "http://rss4.scripting.com/rivers/iowa.js",
-					"NYT": "http://rss4.scripting.com/rivers/nytRiver.js",
-					"Tech": "http://rss4.scripting.com/rivers/tech.js",
-					"World": "http://rss4.scripting.com/rivers/world.js",
-					"Podcasts": "http://rss4.scripting.com/rivers/podcasts.js",
-					"NBA": "http://rss4.scripting.com/rivers/nba.js",
-					"Movies": "http://rss4.scripting.com/rivers/movies.js"
 					},
 				currentPanelName: "",
 				flBackgroundUpdates: false,
@@ -34,13 +27,12 @@
 			
 			
 			//websockets -- 2/1/16 by DW
-				var urlMySocket = "ws://nashville.scripting.com:1601/";
 				var mySocket = undefined;
 				
-				function startWebSocketClient (s) {
+				function webSocketClient (s) {
 					var splitUrl = urlSplitter (window.location.href), host;
 					var urlSocket = "ws://" + splitUrl.host + ":" + serverConfig.webSocketPort + "/";
-					console.log ("startWebSocketClient: urlSocket == " + urlSocket);
+					console.log ("webSocketClient: urlSocket == " + urlSocket);
 					
 					mySocket = new WebSocket (urlSocket); 
 					mySocket.onopen = function (evt) {
@@ -54,15 +46,25 @@
 						if (words.length >= 2) { //new protocol as of 11/29/15 by DW
 							switch (words [0]) {
 								case "updated":
-									var listname = trimWhitespace (words [1]);
-									console.log ("updated " + listname);
+									var listname = stringPopExtension (stringLower (trimWhitespace (words [1]))) + ".js";;
+									console.log ("webSocketClient, list updated: listname == " + listname);
+									for (var x in appPrefs.myRivers) {
+										var thislistname = stringLower (stringNthField (appPrefs.myRivers [x], "=", 2));
+										console.log (thislistname);
+										if (listname == thislistname) {
+											if (stringLower (x) == stringLower (appPrefs.currentPanelName)) {
+												console.log ("webSocketClient, updating the river: url == " + appPrefs.myRivers [x]);
+												httpGetRiver (appPrefs.myRivers [x]);
+												}
+											break;
+											}
+										}
 									break;
 								case "readfeed":
 									var urlfeed = trimWhitespace (words [1]);
 									break;
 								case "item":
 									var jsontext = stringDelete (eventData, 1, 5); //pop off "item "
-									console.log ("new item: jsontext == " + jsontext);
 									break;
 								default:
 									console.log (words [0] + words [1]);
@@ -143,7 +145,7 @@
 				}
 			function everySecond () {
 				if (mySocket === undefined) { //try to open the connection
-					startWebSocketClient ("hello world");
+					webSocketClient ("hello world");
 					}
 				}
 			function startup () {
@@ -213,10 +215,9 @@
 				background-color: whitesmoke;
 				}
 			.divRiverContainer {
-				margin-top: 110px;
+				margin-top: 90px;
 				margin-bottom: 500px;
 				}
-			</style>
 			</style>
 		</head>
 	<body>

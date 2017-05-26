@@ -20,9 +20,9 @@ Pretty much everything in this narrative is configurable.
 
 A current Node.js installation. 
 
-The machine running River5 ahould be accessible over the Internet.
+The machine running River5 ahould able to access the Internet.
 
-It is possible to run the software in a limited form on a non-public machine. Of course, you won't be able to access the home page remotely, or receive realtime notifications of feed updates. You'll also have to find a way to upload the output files in the rivers folder to a place where they can be accessed.
+It is possible to run the software on a non-public machine. Of course, you won't be able to access the home page remotely, or receive realtime notifications of feed updates. You'll also have to find a way to upload the output files in the rivers folder to a place where they can be accessed, if you want others to be able to access your river.
 
 If you don't have Node.js installed on your machine, here are step by step <a href="https://github.com/scripting/river5/blob/master/docs/FORPOETS.md">instructions</a> for installing Node.js on a Macintosh. 
 
@@ -103,6 +103,40 @@ The plan is to eventually offer it through the Node.js package distribution syst
 3. My <a href="http://scripting.com/liveblog/users/davewiner/2016/02/09/0995.html">blog post</a> announcing River5. 
 
 #### Updates
+
+##### v0.50 -- 5/18/17 by DW
+
+Major release of River5, but in a way not much changed. 
+
+The <i>lib</i> folder is gone. The two items that were in the folder have <a href="https://www.npmjs.com/package/daveutils">been</a> <a href="https://www.npmjs.com/package/davereader">published</a> using <a href="https://www.npmjs.com/">NPM</a>, the official Node.js software distribution system. This means that they can be used in projects other than River5. 
+
+<a href="https://github.com/scripting/river5/blob/master/river5.js">river5.js</a> has been <a href="https://github.com/scripting/river5/commit/1b19d1b61cfda43761ec7c106a1dd380f82bc0b4#diff-25e8551cb24637c32e269ed7331a2518">changed</a> to use the new version of feedtools, called <i>davereader</i> (the name feedtools was already taken). It should work exactly as before. 
+
+This change will make new feed-based software possible. I've <a href="https://github.com/scripting/reader#story">written</a> about that on the <i>reader</i> site, and in a <a href="http://scripting.com/2017/05/18/davereaderIsTheEngineOfRiver5.html">blog post</a>. 
+
+Otherwise the changes should be totally transparent to River5 users. The software should behave exactly as it did before. Not much actually changed, it's just been reorganized to make it more useful in more situations. 
+
+Future updates will be logged in the <a href="https://github.com/scripting/reader#updates">Updates section</a> of the <i>reader</i> site.
+
+To update to the new version, follow the same <a href="https://github.com/scripting/river5/blob/master/docs/UPGRADE.md">instructions</a> as for previous releases. 
+
+##### v0.49 -- 4/18/17 by DW
+
+Support for podcasting. New config values, described on the config docs <a href="https://github.com/scripting/river5/blob/master/docs/CONFIG.md#podcastsfolder-podcasts">page</a>.
+
+Added <a href="https://github.com/scripting/river5/blob/master/docs/CONFIG.md#buildrivercallbacksfolder-callbacksbuildriver">buildRiver</a> callbacks. 
+
+##### v0.48 -- 3/29/17 by DW
+
+Changes for <a href="http://scripting.com/2017/03/28/comingSoonElectricRiver.html">Electric River</a>. Added three new callbacks to config that allow us to do things a bit more efficiently because the reading and configuring app is running in the same process as the server. Wrote a <a href="https://github.com/scripting/river5/blob/master/docs/ELECTRIC.md">howto doc</a> for people with experience running River5. Added <i>flBuildEveryFiveSeconds</i> to config, if true, we build changed rivers every five seconds instead of once a minute, the default. Building rivers became a lot more efficient in the change from River4 so it made sense to allow them to be rebuilt more frequently. 
+
+##### v0.47 -- 2/9/17 by DW
+
+Fixed two problems reported by Andrew Shell. Added some feeds to the default set up, and configured the default home page so it only has three panels and they have intelligent labels, using the relatively new <a href="https://github.com/scripting/river5/blob/master/docs/CONFIG.md#configuring-the-home-page">homePage</a> configuration option. Fixed a <a href="http://scripting.com/2017/02/11/cookiesInNytFeeds.html">problem</a> with NYT feeds and cookies. We now set the User-Agent header on requests. Apparently some servers won't respond unless this header is present. 
+
+##### v0.46 -- 11/16/16 by DW
+
+Refreshed the admin app, <a href="http://rss2.io/admin/">relocated</a> it, and fixed a couple of entry-points it depends on that didn't work with CORS. 
 
 ##### v0.45 -- 3/14/16 by DW
 

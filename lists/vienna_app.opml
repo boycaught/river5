@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<opml version="1.0">
+    <head>
+        <title>Vienna Subscriptions</title>
+        <dateCreated>2017-01-02 19:07:45 -0800</dateCreated>
+    </head>
+    <body>
+        <outline htmlUrl="http://www.itsnicethat.com" xmlUrl="http://feeds2.feedburner.com/itsnicethat/SlXC" type="rss" description="" text="It&amp;apos;s Nice That"/>
+        <outline htmlUrl="http://www.nomadicmatt.com" xmlUrl="http://www.nomadicmatt.com/feed/" type="rss" description="Travel Better, Cheaper, Longer" text="Nomadic Matt"/>
+        <outline htmlUrl="http://floodmagazine.com" xmlUrl="http://floodmagazine.com/category/content/music/feed/" type="rss" description="FLOOD is a new, influential voice that spans the diverse cultural landscape of music, film, television, art, travel, and everything in between." text="Flood Magazine music"/>
+        <outline htmlUrl="http://xkcd.com/" xmlUrl="https://xkcd.com/rss.xml" type="rss" description="xkcd.com: A webcomic of romance and math humor." text="Xkcd"/>
+        <outline htmlUrl="https://forums.cocoaforge.com/index.php" xmlUrl="http://forums.cocoaforge.com/feed.php?f=18" type="rss" description="" text="Vienna Support"/>
+        <outline htmlUrl="http://aworkinglibrary.com" xmlUrl="http://aworkinglibrary.com/feed/index.xml" type="rss" description="Reading and writing from Mandy Brown" text="A Working Library"/>
+        <outline htmlUrl="http://www.vienna-rss.org" xmlUrl="http://www.vienna-rss.org/?feed=rss2" type="rss" description="The Free and Open Source RSS/Atom Reader for Mac OS X" text="Vienna Developer Blog"/>
+        <outline htmlUrl="http://www.coolhunting.com" xmlUrl="http://feeds.coolhunting.com/ch" type="rss" description="Cool Hunting is a daily update on ideas and products in the intersection of art, design, culture and technology, and features weekly videos that get an inside look at the people who create them." text="Cool Hunting"/>
+        <outline htmlUrl="http://www.bbc.co.uk/news/" xmlUrl="http://feeds.bbci.co.uk/news/world/rss.xml" type="rss" description="BBC News - World" text="BBC World News"/>
+        <outline htmlUrl="" xmlUrl="http://www.amusingplanet.com/feeds/posts/default?alt=rss" type="rss" description="" text="Amusing Planet"/>
+        <outline htmlUrl="https://unsplash.com/" xmlUrl="https://unsplash.com/rss" type="rss" description="Free (do whatever you want) hi-resolution photos" text="Unsplash"/>
+        <outline htmlUrl="" xmlUrl="https://feeds.feedburner.com/ArsTechnica" type="rss" description="" text="Ars Technica"/>
+        <outline htmlUrl="http://www.apple.com/hotnews/" xmlUrl="http://images.apple.com/main/rss/hotnews/hotnews.rss" type="rss" description="Hot News provided by Apple." text="Apple Hot News"/>
+        <outline htmlUrl="https://www.sixcolors.com/" xmlUrl="http://feedpress.me/sixcolors" type="rss" description="Writing about Apple and other stuff by Jason Snell, Dan Moren, and others." text="Six Colors: Apple, technology, and other stuff from Jason Snell and Friends"/>
+        <outline htmlUrl="http://kottke.org/" xmlUrl="http://feeds.kottke.org/main" type="rss" description="Jason Kottke&amp;apos;s weblog, home of fine hypertext products" text="Kottke"/>
+        <outline htmlUrl="http://antwrp.gsfc.nasa.gov/" xmlUrl="http://apod.nasa.gov/apod.rss" type="rss" description="Astronomy Picture of the Day" text="Astronomy Picture of the Day"/>
+    </body>
+</opml>

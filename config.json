@@ -1,3 +1,24 @@
 {
-	"maxRiverItems": 32	
+	"maxRiverItems": 32,
+	"homePage": { 
+		"panels": [
+			{
+				"title": "Main",
+				"river": "lag_feedly.js"
+				},
+			{
+				"title": "BrandTech",
+				"river": "lag_brandtech.js"
+				},
+			{
+				"title": "AdAge150",
+				"river": "lag_adage150.js"
+				},
+			{
+				"title": "Dave Winer",
+				"river": "davewiner.js"
+				}
+			]
+		}
 	}
+}

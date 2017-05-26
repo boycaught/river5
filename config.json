@@ -1,5 +1,5 @@
 {
-	"maxRiverItems": 32,
+	"maxRiverItems": 160,
 	"homePage": { 
 		"panels": [
 			{
@@ -15,7 +15,7 @@
 				"river": "lag_adage150.js"
 				},
 			{
-				"title": "Vienna",
+				"title": "Vienna RSS",
 				"river": "vienna_app.js"
 				}
 		]

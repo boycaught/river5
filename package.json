@@ -1,6 +1,6 @@
 {
 	"name": "river5",
-	"description": "A river-of-news RSS aggregator in JavaScript running in Node.",
+	"description": "A river-of-news RSS aggregator in JavaScript running in Node. Modified by .LAG for personal testing.",
 	"author": "Dave Winer <dave@smallpicture.com>",
 	"version": "0.5.15",
 	"homepage": "https://github.com/scripting/river5",
